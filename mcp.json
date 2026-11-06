@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "raven": {
+      "url": "https://research-agent.ss-relay-yangyi.workers.dev/agent/mcp"
+    }
+  }
+}

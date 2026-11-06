@@ -1,0 +1,13 @@
+{
+  "name": "raven",
+  "version": "1.0.0",
+  "description": "Search a financial institution's proprietary research library and run AI investment research from the user's Raven account.",
+  "author": {
+    "name": "Young E"
+  },
+  "homepage": "https://research-agent.ss-relay-yangyi.workers.dev",
+  "repository": "https://github.com/YoungY620/raven-mcp",
+  "license": "Apache-2.0",
+  "keywords": ["research", "knowledge-base", "finance"],
+  "logo": "assets/logo.svg"
+}
