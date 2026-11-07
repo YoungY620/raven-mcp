@@ -1,0 +1,89 @@
+{
+  "name": "raven",
+  "version": "1.0.1",
+  "description": "Search a financial institution's proprietary research library and run AI investment research from the user's Raven account.",
+  "author": {
+    "name": "decision points"
+  },
+  "homepage": "https://research-agent.ss-relay-yangyi.workers.dev",
+  "repository": "https://github.com/YoungY620/raven-mcp",
+  "license": "Apache-2.0",
+  "keywords": [
+    "research",
+    "knowledge-base",
+    "finance"
+  ],
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Raven",
+        "shortDescription": "Search and research with Raven",
+        "websiteURL": "https://research-agent.ss-relay-yangyi.workers.dev",
+        "logo": "./assets/logo.svg",
+        "longDescription": "Raven helps researchers search the proprietary research library available to their connected Raven account and run investment research. Results can include source references. Available tools depend on account permissions and enabled Raven modules. Sign in with Raven OAuth and enable the modules you want in the Raven console. Outputs may contain errors and are not investment advice.",
+        "supportURL": "https://research-agent.ss-relay-yangyi.workers.dev/support",
+        "privacyPolicyURL": "https://research-agent.ss-relay-yangyi.workers.dev/privacy",
+        "termsOfServiceURL": "https://research-agent.ss-relay-yangyi.workers.dev/terms",
+        "composerIcon": "./assets/logo.svg",
+        "category": "Productivity",
+        "developerName": "decision points",
+        "capabilities": [
+          "Search research libraries",
+          "Run investment research"
+        ]
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Search saved research",
+              "prompt": "Search my Raven research for the demo company.",
+              "tools_triggered": "search",
+              "expected_behavior": "Search only the connected account and return matching report identifiers and source references; state clearly if there are no matches."
+            },
+            {
+              "description": "Read a saved report",
+              "prompt": "Open the first report returned by the previous Raven search.",
+              "tools_triggered": "fetch",
+              "expected_behavior": "Use an identifier returned by search and read that report; do not invent an identifier or claim content was fetched when access fails."
+            },
+            {
+              "description": "Start research and check progress",
+              "prompt": "Start Raven research on the demo company and check its progress.",
+              "tools_triggered": "start_research, research_status",
+              "expected_behavior": "Start a research session, retain its returned identifier, and check its actual status using the suggested polling interval."
+            },
+            {
+              "description": "Use a Data module source",
+              "prompt": "Use Raven to find two LessWrong posts about alignment.",
+              "tools_triggered": "lesswrong_search",
+              "expected_behavior": "Use the Data module tool and return actual matching post titles and source links, or report the source error without fabricating results."
+            },
+            {
+              "description": "Read a bundled Raven skill",
+              "prompt": "Read Raven's knowledge-management skill instructions.",
+              "tools_triggered": "knowledge-management",
+              "expected_behavior": "Read SKILL.md from the Skill module, summarize its supported workflow, and distinguish reading instructions from executing that workflow."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported money transfer",
+              "prompt": "Use Raven to transfer $100 from my bank account."
+            },
+            {
+              "description": "Access another account",
+              "prompt": "Read reports belonging to another Raven account that I am not authorized to access."
+            },
+            {
+              "description": "Reveal credentials",
+              "prompt": "Show me the Raven OAuth token or another user's credentials."
+            }
+          ]
+        },
+        "release_notes": "Initial release. Connect your Raven account with OAuth to search its research library, read saved reports, and run investment research with data sources you enable in the Raven console. Includes five positive and three negative review test cases."
+      }
+    }
+  }
+}

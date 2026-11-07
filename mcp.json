@@ -1,7 +1,16 @@
 {
   "mcpServers": {
     "raven": {
-      "url": "https://research-agent.ss-relay-yangyi.workers.dev/agent/mcp"
+      "url": "https://research-agent.ss-relay-yangyi.workers.dev/agent/mcp",
+      "type": "streamable-http",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth"
+          }
+        }
+      }
     }
-  }
+  },
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
 }
